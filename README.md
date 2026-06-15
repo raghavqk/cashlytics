@@ -1,4 +1,3 @@
-<img width="1874" height="915" alt="image" src="https://github.com/user-attachments/assets/04e84a59-2079-437b-8054-7fe455cf8f0f" />﻿<div align="center">
 
 # 💰 Cashlytics
 
@@ -112,19 +111,19 @@ cashlytics/
 
 <img width="1874" height="915" alt="image" src="https://github.com/user-attachments/assets/ea9b15d3-a112-41f4-9829-03ed4a033ede" />
 
-<img width="1877" height="838" alt="image" src="https://github.com/user-attachments/assets/01254c56-bf55-4911-994d-1ee9906b854b" />
+<img width="1878" height="832" alt="image" src="https://github.com/user-attachments/assets/443653fc-a3bc-49f7-8354-e1a5a9a503a1" />
 
-<img width="1875" height="917" alt="image" src="https://github.com/user-attachments/assets/5061859e-f156-4548-906e-1ef03b42a3f0" />
+<img width="1875" height="915" alt="image" src="https://github.com/user-attachments/assets/0aed18e3-7817-4c0e-b3ac-c228213de618" />
 
-<img width="1877" height="918" alt="image" src="https://github.com/user-attachments/assets/9a4a448e-c90a-424b-8677-9210904a8c24" />
+<img width="1875" height="916" alt="image" src="https://github.com/user-attachments/assets/da13105e-341d-442e-98f0-2bf05207afe6" />
 
 <img width="1878" height="916" alt="image" src="https://github.com/user-attachments/assets/6914677a-5f7f-4ca8-8691-8ec56748fb7e" />
 
 <img width="1876" height="917" alt="image" src="https://github.com/user-attachments/assets/81e3f9a6-aa16-418f-b612-cc21dbebe35b" />
 
+<img width="1877" height="915" alt="image" src="https://github.com/user-attachments/assets/3c8166e1-de7e-4f8a-bff5-40b1c3893456" />
 
-
-
+<img width="1876" height="920" alt="image" src="https://github.com/user-attachments/assets/484ea74d-c108-41dc-aab8-ffaafb85e7cc" />
 
 
 ---
@@ -132,5 +131,6 @@ cashlytics/
 ## 👤 Author
 
 **Raghav Ahuja** 
+
 Thadomal Shahani Engineering College · University of Mumbai
 [ahujaraghav0809@gmail.com](mailto:ahujaraghav0809@gmail.com)
