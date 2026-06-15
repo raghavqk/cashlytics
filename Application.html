@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Cashlytics - Advanced Personal Finance Manager" />
+  <meta name="author" content="Raghav Ahuja" />
+  <title>Cashlytics - Finance Manager</title>
+  <link rel="icon" type="image/x-icon" href="images/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- Header / Navbar -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="">
+            <span>Cashlytics</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item active"><a class="nav-link" href="Application.html">Application</a></li>
+              </ul>
+            </div>
+            <div class="quote_btn-container d-flex justify-content-center">
+              <a href="mailto:ahujaraghav0809@gmail.com"><span>@</span> ahujaraghav0809@gmail.com</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <!-- MAIN APPLICATION SECTION -->
+  <section class="layout_padding">
+      <div id="main-dashboard" class="container container1 d-none">
+            <div class="header">
+                <img src="https://i.ibb.co/jfScDTC/budget.png" alt="Expense Tracker" />
+                <div class="balance-container">
+                    <h2 id="welcome-message">Your Portfolio</h2>
+                </div>
+            </div>
+
+            <div class="portfolio-summary">
+                <div class="summary-card assets-summary">
+                    <div class="summary-icon"><i class="fas fa-arrow-up"></i></div>
+                    <div class="summary-content">
+                        <h4>Total Assets</h4>
+                        <p id="total-assets" class="money plus">+₹0.00</p>
+                    </div>
+                </div>
+                <div class="summary-card liabilities-summary">
+                    <div class="summary-icon"><i class="fas fa-arrow-down"></i></div>
+                    <div class="summary-content">
+                        <h4>Total Liabilities</h4>
+                        <p id="total-liabilities" class="money minus">-₹0.00</p>
+                    </div>
+                </div>
+                <div class="summary-card net-worth-summary">
+                    <div class="summary-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="summary-content">
+                        <h4>Net Worth</h4>
+                        <p id="net-worth" class="balance">₹0.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Your Accounts <button class="btn-add-account" id="add-account-btn">+</button></h3>
+            <div id="accounts-list" class="mb-4"></div>
+            
+            <!-- Two Column Layout -->
+            <div class="two-column-layout">
+                <!-- LEFT COLUMN - ASSETS & INCOME -->
+                <div class="column assets-column">
+                    <div class="column-header">
+                        <i class="fas fa-arrow-up"></i>
+                        <h3>Assets & Income</h3>
+                    </div>
+
+                    <!-- Income Transactions -->
+                    <div class="section-card">
+                        <h4>Add Income <button class="btn-add-small" onclick="showIncomeForm()">+</button></h4>
+                        <form id="income-form" class="transaction-form-compact">
+                            <input type="text" id="income-text" placeholder="Description..." required>
+                            <div class="form-row-compact">
+                                <input type="number" id="income-amount" placeholder="Amount" step="0.01" required>
+                                <input type="date" id="income-date">
+                            </div>
+                            <select id="income-category">
+                                <option value="Salary">Salary</option>
+                                <option value="Business">Business</option>
+                                <option value="Investment">Investment Returns</option>
+                                <option value="Other">Other Income</option>
+                            </select>
+                            <select id="income-account" required>
+                                <option value="">Select Account</option>
+                            </select>
+                            <button type="submit" class="btn btn-success">Add Income</button>
+                        </form>
+                    </div>
+
+                    <!-- Investments -->
+                    <div class="section-card">
+                        <h4>Investments <button class="btn-add-small" id="add-investment-btn-column">+</button></h4>
+                        <div id="investments-list" class="compact-list"></div>
+                    </div>
+
+                    <!-- Schemes -->
+                    <div class="section-card">
+                        <h4>Investment Schemes <button class="btn-add-small" id="add-scheme-btn-column">+</button></h4>
+                        <div id="schemes-list" class="compact-list"></div>
+                    </div>
+
+                    <!-- Income History -->
+                    <div class="section-card">
+                        <h4>Income History</h4>
+                        <ul id="income-list" class="list compact-list"></ul>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN - LIABILITIES & EXPENSES -->
+                <div class="column liabilities-column">
+                    <div class="column-header">
+                        <i class="fas fa-arrow-down"></i>
+                        <h3>Liabilities & Expenses</h3>
+                    </div>
+
+                    <!-- Expense Transactions -->
+                    <div class="section-card">
+                        <h4>Add Expense <button class="btn-add-small" onclick="showExpenseForm()">+</button></h4>
+                        <form id="expense-form" class="transaction-form-compact">
+                            <input type="text" id="expense-text" placeholder="Description..." required>
+                            <div class="form-row-compact">
+                                <input type="number" id="expense-amount" placeholder="Amount" step="0.01" required>
+                                <input type="date" id="expense-date">
+                            </div>
+                            <select id="expense-category">
+                                <option value="Food & Dining">Food & Dining</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Bills & Utilities">Bills & Utilities</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Education">Education/Tuition</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <select id="expense-account" required>
+                                <option value="">Select Account</option>
+                            </select>
+                            <button type="submit" class="btn btn-danger">Add Expense</button>
+                        </form>
+                    </div>
+
+                    <!-- EMIs & Loans -->
+                    <div class="section-card">
+                        <h4>EMIs & Loans <button class="btn-add-small" id="add-emi-btn-column">+</button></h4>
+                        <div id="emis-list" class="compact-list"></div>
+                    </div>
+
+                    <!-- Expense History -->
+                    <div class="section-card">
+                        <h4>Expense History</h4>
+                        <ul id="expense-list" class="list compact-list"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics-section">
+                <h3>Financial Analytics</h3>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="analytics-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="analytics-value" id="total-investments">₹0.00</div>
+                        <div class="analytics-label">Total Investments</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-icon"><i class="fas fa-percentage"></i></div>
+                        <div class="analytics-value" id="monthly-emi">₹0.00</div>
+                        <div class="analytics-label">Monthly EMIs</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="analytics-value" id="schemes-value">₹0.00</div>
+                        <div class="analytics-label">Schemes Value</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div class="analytics-value" id="savings-rate">0%</div>
+                        <div class="analytics-label">Savings Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMI/Interest Action Section -->
+            <div id="emi-interest-section" class="section-card">
+                <h3>Monthly EMI & Interest Actions</h3>
+                <div class="emi-interest-controls">
+                    <button id="apply-emi-button" class="btn btn-primary">
+                        <i class="fas fa-money-check-alt"></i> Apply Monthly EMI Payments
+                    </button>
+                    <button id="apply-interest-button" class="btn btn-success">
+                        <i class="fas fa-chart-line"></i> Apply Investment Returns
+                    </button>
+                </div>
+                <div id="emi-interest-summary" class="mt-3">
+                    <div class="summary-row">
+                        <span>Total Monthly EMI:</span>
+                        <span id="total-monthly-emi" class="money minus">-₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Expected Monthly Returns:</span>
+                        <span id="total-monthly-returns" class="money plus">+₹0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn" id="export-json-btn" style="background-color: #28a745; margin-right: 10px;">
+                    <i class="fas fa-file-export"></i> Export JSON
+                </button>
+                <button class="btn" id="export-image-btn" style="background-color: #17a2b8; margin-right: 10px;">
+                    <i class="fas fa-image"></i> Export as Image
+                </button>
+                <button class="btn" id="reset-portfolio-btn" style="background-color: #c0392b;">
+                    <i class="fas fa-redo"></i> Reset Portfolio
+                </button>
+            </div>
+            
+            <!-- Hidden Report Container for Export -->
+            <div id="portfolio-report" style="display: none; background: white; width: 1200px; margin: 0 auto; overflow: hidden;">
+                <div id="report-content"></div>
+            </div>
+      </div>
+  </section>
+
+  <!-- Full-Screen Setup Modal -->
+  <div id="setup-modal" class="modal-overlay">
+    <div class="modal-content-lg">
+      <div id="step-1">
+        <h3>Welcome to Cashlytics!</h3>
+        <p>Let's create your personalized financial portfolio.</p>
+        <div class="form-group">
+          <label for="user-name">What should we call you?</label>
+          <input type="text" id="user-name" class="form-control" placeholder="Enter your name" required>
+        </div>
+        <button id="next-step-1" class="btn btn-primary btn-block">Next &rarr;</button>
+      </div>
+
+      <div id="step-2" class="d-none">
+        <h3>Create Your First Account</h3>
+        <p>You need at least one account to get started. You can add more later.</p>
+        <form id="setup-form">
+          <div class="form-group">
+            <label for="account-name">Account Name</label>
+            <input type="text" id="account-name" class="form-control" placeholder="e.g., ICICI Savings, HDFC Home Loan" required>
+          </div>
+           <div class="form-group">
+                <label for="account-type">Account Type</label>
+                <select id="account-type" class="form-control">
+                    <option value="Savings">Savings</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Loan">Loan</option>
+                    <option value="Investment">Investment</option>
+                    <option value="Cash">Cash</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="initial-balance">Current Balance / Loan Amount</label>
+                <input type="number" id="initial-balance" class="form-control" value="0" required>
+            </div>
+            
+            <div id="setup-savings-fields" class="conditional-fields d-none">
+                <div class="form-group">
+                    <label for="setup-savings-interest">Annual Interest Rate (%)</label>
+                    <input type="number" id="setup-savings-interest" class="form-control" placeholder="e.g., 4.5">
+                </div>
+            </div>
+
+            <div id="setup-loan-fields" class="conditional-fields d-none">
+                 <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="setup-loan-interest">Annual Interest Rate (%)</label>
+                        <input type="number" id="setup-loan-interest" class="form-control" placeholder="e.g., 8.2">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="setup-loan-tenure">Loan Tenure (Years)</label>
+                        <input type="number" id="setup-loan-tenure" class="form-control" placeholder="e.g., 20">
+                    </div>
+                </div>
+            </div>
+          <button type="submit" class="btn btn-success btn-block" style="background-color: #28a745;">Create Portfolio</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <!-- Add Account Modal -->
+    <div id="add-account-modal" class="modal-overlay">
+        <div class="modal-content">
+             <button class="close-modal-btn" id="close-add-account-modal">&times;</button>
+            <h3>Add New Account</h3>
+            <form id="add-account-form">
+                <div class="form-group">
+                    <label for="new-account-name">Account Name</label>
+                    <input type="text" id="new-account-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-account-type">Account Type</label>
+                    <select id="new-account-type" class="form-control">
+                        <option value="Savings">Savings Account</option>
+                        <option value="Current">Current Account</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Loan">Loan Account</option>
+                        <option value="Investment">Investment Account</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="new-initial-balance">Initial Balance / Loan Amount</label>
+                    <input type="number" id="new-initial-balance" class="form-control" value="0" required>
+                </div>
+
+                <div id="new-savings-fields" class="conditional-fields d-none">
+                  <div class="form-group">
+                      <label for="new-savings-interest">Annual Interest Rate (%)</label>
+                      <input type="number" id="new-savings-interest" class="form-control" placeholder="e.g., 4.5" step="0.01">
+                  </div>
+                </div>
+
+                <div id="new-loan-fields" class="conditional-fields d-none">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="new-loan-interest">Annual Interest Rate (%)</label>
+                            <input type="number" id="new-loan-interest" class="form-control" placeholder="e.g., 8.2" step="0.01">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="new-loan-tenure">Loan Tenure (Years)</label>
+                            <input type="number" id="new-loan-tenure" class="form-control" placeholder="e.g., 20">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Add Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add EMI Modal -->
+    <div id="add-emi-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-add-emi-modal">&times;</button>
+            <h3>Add EMI / Loan</h3>
+            <form id="add-emi-form">
+                <div class="form-group">
+                    <label for="emi-name">EMI Name</label>
+                    <input type="text" id="emi-name" class="form-control" placeholder="e.g., Home Loan, Car Loan" required>
+                </div>
+                <div class="form-group">
+                    <label for="emi-account">Linked Account</label>
+                    <select id="emi-account" class="form-control" required>
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="emi-principal">Principal Amount (₹)</label>
+                    <input type="number" id="emi-principal" class="form-control" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="emi-interest-rate">Annual Interest Rate (%)</label>
+                        <input type="number" id="emi-interest-rate" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="emi-tenure">Tenure (Years)</label>
+                        <input type="number" id="emi-tenure" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="emi-start-date">Start Date</label>
+                    <input type="date" id="emi-start-date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Add EMI</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Investment Modal -->
+    <div id="add-investment-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-add-investment-modal">&times;</button>
+            <h3>Add Investment</h3>
+            <form id="add-investment-form">
+                <div class="form-group">
+                    <label for="investment-name">Investment Name</label>
+                    <input type="text" id="investment-name" class="form-control" placeholder="e.g., Reliance Stock, HDFC Mutual Fund" required>
+                </div>
+                <div class="form-group">
+                    <label for="investment-type">Investment Type</label>
+                    <select id="investment-type" class="form-control" required>
+                        <option value="Mutual Fund">Mutual Fund</option>
+                        <option value="Stocks">Stocks</option>
+                        <option value="Bonds">Bonds</option>
+                        <option value="ETF">ETF</option>
+                        <option value="SIP">SIP (Systematic Investment Plan)</option>
+                        <option value="Commodity">Commodity</option>
+                        <option value="Cryptocurrency">Cryptocurrency</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="investment-amount">Investment Amount (₹)</label>
+                    <input type="number" id="investment-amount" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="investment-account">Source Account</label>
+                    <select id="investment-account" class="form-control" required>
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="investment-current-value">Current Value (₹)</label>
+                        <input type="number" id="investment-current-value" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="investment-date">Purchase Date</label>
+                        <input type="date" id="investment-date" class="form-control" required>
+                    </div>
+                </div>
+                <div id="sip-fields" class="conditional-fields d-none">
+                    <div class="form-group">
+                        <label for="sip-amount">Monthly SIP Amount (₹)</label>
+                        <input type="number" id="sip-amount" class="form-control">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Add Investment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Scheme Modal -->
+    <div id="add-scheme-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-add-scheme-modal">&times;</button>
+            <h3>Add Investment Scheme</h3>
+            <form id="add-scheme-form">
+                <div class="form-group">
+                    <label for="scheme-name">Scheme Name</label>
+                    <input type="text" id="scheme-name" class="form-control" placeholder="e.g., PPF Account, Fixed Deposit" required>
+                </div>
+                <div class="form-group">
+                    <label for="scheme-type">Scheme Type</label>
+                    <select id="scheme-type" class="form-control" required>
+                        <option value="PPF">PPF (Public Provident Fund)</option>
+                        <option value="FD">FD (Fixed Deposit)</option>
+                        <option value="RD">RD (Recurring Deposit)</option>
+                        <option value="NSC">NSC (National Savings Certificate)</option>
+                        <option value="SSY">SSY (Sukanya Samriddhi Yojana)</option>
+                        <option value="NPS">NPS (National Pension Scheme)</option>
+                        <option value="ELSS">ELSS (Equity Linked Savings Scheme)</option>
+                        <option value="ULIP">ULIP (Unit Linked Insurance Plan)</option>
+                        <option value="LIC">LIC Policy</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="scheme-amount">Principal Amount / Current Value (₹)</label>
+                    <input type="number" id="scheme-amount" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="scheme-account">Source Account</label>
+                    <select id="scheme-account" class="form-control" required>
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="scheme-interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="scheme-interest-rate" class="form-control" step="0.01">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="scheme-maturity-date">Maturity Date</label>
+                        <input type="date" id="scheme-maturity-date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="scheme-start-date">Start Date</label>
+                    <input type="date" id="scheme-start-date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Add Scheme</button>
+            </form>
+        </div>
+    </div>
+
+
+  <section class="container-fluid footer_section">
+    <p>&copy; 2025 Cashlytics | Built by Raghav Ahuja | SEM 5 | Roll No. 4</p>
+  </section>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
+
