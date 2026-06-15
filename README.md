@@ -10,7 +10,6 @@
 
 **Semester 5 Mini Project · Thadomal Shahani Engineering College · University of Mumbai**
 
-[Live Demo](https://raghavqk.github.io/cashlytics) · [Report Bug](https://github.com/raghavqk/cashlytics/issues)
 
 </div>
 
